@@ -1,0 +1,4 @@
+*.tflite
+*.h5
+/media
+detection/__pycache__

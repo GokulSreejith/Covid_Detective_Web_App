@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Upload Image</title>
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      body {
+        background-color: #f8f9fa;
+      }
+      .container {
+        max-width: 500px;
+        margin-top: 100px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+      }
+      .upload-form {
+        padding: 30px;
+      }
+      .upload-form h1 {
+        font-size: 28px;
+        font-weight: bold;
+        text-align: center;
+        margin-bottom: 30px;
+        color: #333;
+      }
+      .upload-form .form-group {
+        margin-bottom: 20px;
+      }
+      .upload-form .form-group label {
+        font-weight: bold;
+      }
+      .upload-form .form-group input[type="file"] {
+        display: none;
+      }
+      .upload-form .form-group .custom-file-upload {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        background-color: #f8f9fa;
+        border: 1px solid #ced4da;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .upload-form .form-group .custom-file-upload:hover {
+        background-color: #e9ecef;
+      }
+      .upload-form .btn-upload {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .upload-form .btn-upload:hover {
+        background-color: #0056b3;
+      }
+      .preview-image {
+        display: none;
+        width: 100%;
+        margin-top: 20px;
+      }
+      .btn-reset {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #dc3545;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-bottom: 10px;
+      }
+      .btn-reset:hover {
+        background-color: #c82333;
+      }
+
+      @media (max-width: 576px) {
+        .container {
+          margin-top: 20px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="upload-form">
+        <h1>Upload X-ray Image</h1>
+        <form
+          method="POST"
+          enctype="multipart/form-data"
+          action="{% url 'upload_image' %}"
+          onsubmit="validateForm(event)"
+        >
+          {% csrf_token %}
+          <div class="form-group">
+            <label for="imageUpload" class="custom-file-upload">
+              <i class="fas fa-cloud-upload-alt"></i> Choose Image
+            </label>
+            <input
+              id="imageUpload"
+              type="file"
+              name="image"
+              onchange="previewImage(event)"
+            />
+          </div>
+          <img
+            id="previewImage"
+            class="preview-image"
+            src="#"
+            alt="Preview Image"
+          />
+          <button
+            class="btn btn-secondary btn-reset"
+            type="button"
+            onclick="resetForm()"
+          >
+            Reset
+          </button>
+
+          <button class="btn btn-primary btn-upload pt-2" type="submit">
+            Submit
+          </button>
+        </form>
+      </div>
+    </div>
+    <script
+      src="https://kit.fontawesome.com/your-fontawesome-kit.js"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script>
+      function previewImage(event) {
+        var inputFile = event.target;
+        var selectedFile = inputFile.files[0];
+        var preview = document.getElementById("previewImage");
+
+        if (selectedFile) {
+          var reader = new FileReader();
+          reader.onload = function () {
+            preview.src = reader.result;
+            preview.style.display = "block";
+          };
+          reader.readAsDataURL(selectedFile);
+        } else {
+          preview.src = "";
+          preview.style.display = "none";
+        }
+      }
+      function resetForm() {
+        var inputFile = document.getElementById("imageUpload");
+        var selectedFile = inputFile.files[0];
+
+        if (!selectedFile) {
+          alert("Please select an image.");
+          event.preventDefault(); // Prevent form submission
+        }
+
+        inputFile.value = null;
+        
+        var preview = document.getElementById("previewImage");
+        preview.src = "#";
+        preview.style.display = "none";
+      }
+      function validateForm(event) {
+        var inputFile = document.getElementById("imageUpload");
+        var selectedFile = inputFile.files[0];
+
+        if (!selectedFile) {
+          alert("Please select an image.");
+          event.preventDefault(); // Prevent form submission
+        }
+      }
+    </script>
+  </body>
+</html>
