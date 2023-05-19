@@ -77,7 +77,7 @@
         border: none;
         border-radius: 5px;
         cursor: pointer;
-        margin-bottom: 10px;
+        margin-top: 10px;
       }
       .btn-reset:hover {
         background-color: #c82333;
@@ -93,7 +93,7 @@
   <body>
     <div class="container">
       <div class="upload-form">
-        <h1>Upload X-ray Image</h1>
+        <h1>Upload X-ray Image (PNG)</h1>
         <form
           method="POST"
           enctype="multipart/form-data"
@@ -109,9 +109,15 @@
               id="imageUpload"
               type="file"
               name="image"
+              accept="image/*"
               onchange="previewImage(event)"
             />
           </div>
+
+          <button class="btn btn-primary btn-upload pt-2" type="submit">
+            Submit
+          </button>
+
           <img
             id="previewImage"
             class="preview-image"
@@ -124,10 +130,6 @@
             onclick="resetForm()"
           >
             Reset
-          </button>
-
-          <button class="btn btn-primary btn-upload pt-2" type="submit">
-            Submit
           </button>
         </form>
       </div>
@@ -165,7 +167,7 @@
         }
 
         inputFile.value = null;
-        
+
         var preview = document.getElementById("previewImage");
         preview.src = "#";
         preview.style.display = "none";

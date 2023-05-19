@@ -1,53 +1,72 @@
 <!DOCTYPE html>
 <html>
-<head>
+  <head>
     <title>COVID-19 Detection Result</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
     <style>
-        body {
-            background-color: #f8f9fa;
-        }
-        .container {
-            max-width: 500px;
-            margin-top: 100px;
-            border-radius: 10px;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-        }
-        .result-card {
-            padding: 30px;
-            text-align: center;
-        }
-        .result-card h1 {
-            font-size: 28px;
-            font-weight: bold;
-            margin-bottom: 30px;
-            color: #333;
-        }
-        .result-card p {
-            font-size: 24px;
-            font-weight: bold;
-            color: #333;
-        }
-        .result-card .positive {
-            color: #dc3545;
-        }
-        .result-card .negative {
-            color: #28a745;
-        }
+      body {
+        background-color: #f8f9fa;
+      }
+      .container {
+        max-width: 500px;
+        margin-top: 100px;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+        background-color: #fff;
+      }
+      .result-card {
+        padding: 30px;
+        text-align: center;
+      }
+      .result-card h1 {
+        font-size: 28px;
+        font-weight: bold;
+        margin-bottom: 30px;
+        color: #333;
+      }
+      .result-card p {
+        font-size: 24px;
+        font-weight: bold;
+        color: #333;
+      }
+      .result-card .positive {
+        color: #dc3545;
+      }
+      .result-card .negative {
+        color: #28a745;
+      }
+      .btn-upload {
+        width: 100%;
+        padding: 12px;
+        font-size: 16px;
+        font-weight: bold;
+        color: #fff;
+        background-color: #007bff;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+      .btn-upload:hover {
+        background-color: #0056b3;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <div class="container">
-        <div class="result-card">
-            <h1>COVID-19 Detection Result</h1>
-            {% if results == 1 %}
-                <p class="positive">COVID-19 Positive</p>
-            {% else %}
-                <p class="negative">COVID-19 Negative</p>
-            {% endif %}
-        </div>
+      <div class="result-card">
+        <h1>COVID-19 Detection Result</h1>
+        {% if results == 1 %}
+        <p class="positive">COVID-19 Positive</p>
+        {% else %}
+        <p class="negative">COVID-19 Negative</p>
+        {% endif %}
+
+        <a class="btn btn-primary btn-upload pt-2" href="/"> Back </a>
+      </div>
     </div>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-</body>
+  </body>
 </html>

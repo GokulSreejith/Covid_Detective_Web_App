@@ -6,6 +6,7 @@ import cv2 as cv
 import numpy as np
 from matplotlib import pyplot as plt
 from tensorflow.keras.models import load_model
+import pandas as pd
 
 # Model paths
 RESNET_H5_MODEL_PATH = 'detection/saved_models/h5_models/resnet_model.h5'
@@ -15,8 +16,7 @@ INCEPTION_H5_MODEL_PATH = 'detection/saved_models/h5_models/inception_model.h5'
 def detect_covid(image_path):
     try:
         # Read and preprocess the image
-        path = image_path
-        image = cv.imread(path)
+        image = cv.imread(image_path)
         img = cv.resize(image, (224, 224))
         img = np.reshape(img, [1, 224, 224, 3])
         res_image = res_preprocess(img)
@@ -40,16 +40,9 @@ def detect_covid(image_path):
         classes.append(int(np.argmax(xception_pred, axis=1)))
         classes.append(int(np.argmax(inception_pred, axis=1)))
 
-        labels = {0: 'negative', 1: 'positive'}
+        labels = { 0: 'negative', 1: 'positive' }
 
-        # Print the predicted classes and the majority label
-        print(classes)
-        print(labels[max(set(classes), key=classes.count)])
-
-        # Display the image with the predicted label
-        plt.title(labels[max(set(classes), key=classes.count)])
-        plt.imshow(image)
-        plt.show()
+        return { "index": max(set(classes), key=classes.count),  "label": labels[max(set(classes), key=classes.count) ].upper()}
 
     except Exception as e:
         # Handle the error

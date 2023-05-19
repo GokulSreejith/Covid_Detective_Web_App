@@ -2,3 +2,4 @@
 *.h5
 /media
 detection/__pycache__
+covidvision/__pycache__

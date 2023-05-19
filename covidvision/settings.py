@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-m%6&7nfnj^u(oa0@bf9u^_kf7ui%zn2v7(wzk#+8pu=nkx9&x^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ["117.207.68.36","192.168.1.25"]
+ALLOWED_HOSTS = ["https://covid-detective.gokulsreejith.com","localhost"]
 
 
 # Application definition
@@ -113,6 +113,8 @@ USE_I18N = True
 
 USE_TZ = True
 
+CSRF_COOKIE_SECURE = False
+CSRF_COOKIE_HTTPONLY = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/

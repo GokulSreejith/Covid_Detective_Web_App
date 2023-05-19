@@ -4,9 +4,9 @@ import numpy as np
 from PIL import Image
 
 # Model paths
-RESNET_TFLITE_MODEL_PATH = 'detection/saved_models/tflite_models/resnet_model.tflite'
-XCEPTION_TFLITE_MODEL_PATH = 'detection/saved_models/tflite_models/xception_model.h5'
-INCEPTION_TFLITE_MODEL_PATH = 'detection/saved_models/tflite_models/inception_model.h5'
+RESNET_TFLITE_MODEL_PATH = 'detection/saved_models/tflite_models/resnet.tflite'
+XCEPTION_TFLITE_MODEL_PATH = 'detection/saved_models/tflite_models/xception.tflite'
+INCEPTION_TFLITE_MODEL_PATH = 'detection/saved_models/tflite_models/inception.tflite'
 
 
 def detect_covid(image_path):
@@ -17,6 +17,8 @@ def detect_covid(image_path):
 
         input_details = interpreter.get_input_details()
         output_details = interpreter.get_output_details()
+
+        print(input_details,output_details)
 
         # Preprocess the image
         image = Image.open(image_path).resize((224, 224))
