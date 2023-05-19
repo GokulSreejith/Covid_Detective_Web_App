@@ -24,9 +24,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-m%6&7nfnj^u(oa0@bf9u^_kf7ui%zn2v7(wzk#+8pu=nkx9&x^'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ["covid-detective.gokulsreejith.com"]
+ALLOWED_HOSTS = ["covid-detective.gokulsreejith.com","127.0.0.1"]
 
 # Application definition
 
@@ -49,7 +49,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
-    'corsheaders.middleware.CorsMiddleware',
+    'corsheaders.middleware.CorsMiddleware'
 ]
 
 CORS_ALLOWED_ORIGINS = [
