@@ -1,3 +1,4 @@
+from django.views.decorators.csrf import csrf_exempt
 from django.shortcuts import render, redirect
 from django.http import JsonResponse 
 from django.conf import settings
@@ -44,6 +45,7 @@ def upload_image(request):
             error_message = str(e)  # Convert the error to a string
             return render(request, 'error.html', {'error_message': error_message})
 
+@csrf_exempt
 def check_covid_api(request):
     if request.method == 'POST':
         form = ImageUploadForm(request.POST, request.FILES)

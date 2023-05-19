@@ -26,8 +26,8 @@ SECRET_KEY = 'django-insecure-m%6&7nfnj^u(oa0@bf9u^_kf7ui%zn2v7(wzk#+8pu=nkx9&x^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["https://covid-detective.gokulsreejith.com","localhost"]
-
+# ALLOWED_HOSTS = ["covid-detective.gokulsreejith.com","127.0.0.1"]
+ALLOWED_HOSTS = ['*']
 
 # Application definition
 
@@ -112,9 +112,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
-CSRF_COOKIE_SECURE = False
-CSRF_COOKIE_HTTPONLY = False
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
