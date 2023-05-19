@@ -6,7 +6,6 @@ import cv2 as cv
 import numpy as np
 from matplotlib import pyplot as plt
 from tensorflow.keras.models import load_model
-import pandas as pd
 
 # Model paths
 RESNET_H5_MODEL_PATH = 'detection/saved_models/h5_models/resnet_model.h5'

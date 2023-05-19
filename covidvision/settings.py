@@ -26,8 +26,7 @@ SECRET_KEY = 'django-insecure-m%6&7nfnj^u(oa0@bf9u^_kf7ui%zn2v7(wzk#+8pu=nkx9&x^
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-# ALLOWED_HOSTS = ["covid-detective.gokulsreejith.com","127.0.0.1"]
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ["covid-detective.gokulsreejith.com"]
 
 # Application definition
 
@@ -39,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'detection.apps.DetectionConfig',
+    'corsheaders',
 ]
 
 MIDDLEWARE = [
@@ -49,6 +49,15 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+]
+
+CORS_ALLOWED_ORIGINS = [
+    'https://covid-detective.gokulsreejith.com',
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    'https://covid-detective.gokulsreejith.com',
 ]
 
 ROOT_URLCONF = 'covidvision.urls'
@@ -70,40 +79,6 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'covidvision.wsgi.application'
-
-
-# Database
-# https://docs.djangoproject.com/en/4.1/ref/settings/#databases
-
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-
-
-# Password validation
-# https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
-
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
-
-
-# Internationalization
-# https://docs.djangoproject.com/en/4.1/topics/i18n/
 
 LANGUAGE_CODE = 'en-us'
 

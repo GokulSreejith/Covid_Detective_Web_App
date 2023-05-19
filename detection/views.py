@@ -3,15 +3,15 @@ from django.shortcuts import render, redirect
 from django.http import JsonResponse 
 from django.conf import settings
 from .image_upload import ImageUploadForm
-import requests
 
 from .detect_covid_h5 import detect_covid
 # from .detect_covid_tflite import detect_covid
 
-def get_csrf_token():
-    response = requests.get("http://localhost:5000/csrf_token/")
-    csrf_token = response.cookies['csrftoken']
-    return csrf_token
+@csrf_exempt
+def get_csrf_token(request):
+    # The `csrf_token` method returns the CSRF token value
+    csrf_token = request.csrf_token
+    return JsonResponse({'csrf_token': csrf_token})
 
 def generate_response(success, message, result):
     response = {
